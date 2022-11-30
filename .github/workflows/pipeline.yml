@@ -24,3 +24,19 @@ jobs:
               
       - name: Unit Test
         run: python -m unittest -v test
+    
+  Deploy:
+
+      - name: Autenticação no Google Cloud
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+      - name: Deploy AppEngine
+        id: 'deploy'
+        uses: 'google-github-actions/deploy-appengine@v1'
+
+      - id: 'test'
+        run: 'curl "${{ steps.deploy.outputs.url }}"'
