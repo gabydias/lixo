@@ -26,7 +26,8 @@ jobs:
         run: python -m unittest -v test
     
   Deploy:
-
+    runs-on: ubuntu-latest
+    steps:
       - name: Autenticação no Google Cloud
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
