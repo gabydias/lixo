@@ -28,6 +28,9 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
       - name: Autenticação no Google Cloud
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
